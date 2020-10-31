@@ -1,7 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:ohstel_hostel_app/hostel_booking/hoste_home_page.dart';
+import 'package:provider/provider.dart';
 
+import 'auth/methods/auth_methods.dart';
+import 'auth/models/login_user_model.dart';
+import 'auth/wrapper.dart';
 import 'hive_methods/hive_class.dart';
 
 Future<void> main() async {
@@ -20,12 +23,18 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return StreamProvider<LoginUserModel>.value(
+      value: AuthService().userStream,
+      child: MaterialApp(
+        title: 'Ohstel',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primaryColor: Color(0xfff27507),
+          primarySwatch: Colors.deepOrange,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: Wrapper(),
       ),
-      home: HostelHomePage(),
     );
   }
 }

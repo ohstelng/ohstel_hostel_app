@@ -755,7 +755,7 @@ class _UploadHostelPageState extends State<UploadHostelPage> {
       padding: EdgeInsets.all(20.0),
       child: SingleChildScrollView(
         child: DropdownButton(
-            hint: Text('Accommodation'),
+            hint: Text('$hostelAccommodationType'),
             items: [
               DropdownMenuItem(
                 child: Text("Self Contain"),
